@@ -1267,7 +1267,7 @@ add_swap() {
 		mkswap -f "$partition"
 	done
 
-	# 确保 /swapfile 不再被使用
+	# 確保 /swapfile 不再被使用
 	swapoff /swapfile
 
 	# 刪除舊的 /swapfile
@@ -4261,11 +4261,11 @@ linux_clean() {
 	elif command -v apk &>/dev/null; then
 		echo "清理包管理器快取..."
 		apk cache clean
-		echo "删除系统日志..."
+		echo "刪除系統日誌..."
 		rm -rf /var/log/*
 		echo "刪除APK快取..."
 		rm -rf /var/cache/apk/*
-		echo "删除临时文件..."
+		echo "刪除臨時檔案..."
 		rm -rf /tmp/*
 
 	elif command -v pacman &>/dev/null; then
@@ -5265,7 +5265,7 @@ optimize_balanced() {
 	sysctl -w kernel.sched_autogroup_enabled=1 2>/dev/null
 
 	echo -e "${gl_lv}其他優化...${gl_bai}"
-	# 还原透明大页面
+	# 還原透明大頁面
 	echo always > /sys/kernel/mm/transparent_hugepage/enabled
 	# 還原 NUMA balancing
 	sysctl -w kernel.numa_balancing=1 2>/dev/null
@@ -5443,7 +5443,7 @@ update_locale() {
 				locale-gen
 				echo "LANG=${lang}" > /etc/default/locale
 				export LANG=${lang}
-				echo -e "${gl_lv}系統語言已經修改為:$lang 重新连接SSH生效。${gl_bai}"
+				echo -e "${gl_lv}系統語言已經修改為:$lang重新連線SSH生效。${gl_bai}"
 				hash -r
 				break_end
 
@@ -6090,7 +6090,7 @@ format_partition() {
 	fi
 
 	# 格式化分割區
-	echo "正在格式化分区 /dev/$PARTITION為$FS_TYPE ..."
+	echo "正在格式化分割區 /dev/$PARTITION為$FS_TYPE ..."
 	mkfs.$FS_TYPE "/dev/$PARTITION"
 
 	if [ $? -eq 0 ]; then
@@ -6169,7 +6169,7 @@ add_task() {
 	read -e -p "請輸入本地目錄:" local_path
 	read -e -p "請輸入遠端目錄:" remote_path
 	read -e -p "請輸入遠端使用者@IP:" remote
-	read -e -p "请输入 SSH 端口 (默认 22): " port
+	read -e -p "請輸入 SSH 連接埠 (預設 22):" port
 	port=${port:-22}
 
 	echo "請選擇身份驗證方式:"
@@ -8796,7 +8796,7 @@ linux_panel() {
 				port=25
 				timeout=3
 				if echo "quit" | timeout $timeout telnet smtp.qq.com $port | grep 'Connected'; then
-				  echo -e "${gl_lv}連接埠$port目前可用${gl_bai}"
+				  echo -e "${gl_lv}連接埠$port 当前可用${gl_bai}"
 				else
 				  echo -e "${gl_hong}連接埠$port目前不可用${gl_bai}"
 				fi
@@ -11029,7 +11029,7 @@ linux_Settings() {
 	  echo -e "系統工具"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}1.   ${gl_bai}設定腳本啟動快捷鍵${gl_kjlan}2.   ${gl_bai}修改登入密碼"
-	  echo -e "${gl_kjlan}3.   ${gl_bai}ROOT密码登录模式                   ${gl_kjlan}4.   ${gl_bai}安裝Python指定版本"
+	  echo -e "${gl_kjlan}3.   ${gl_bai}ROOT密碼登入模式${gl_kjlan}4.   ${gl_bai}安裝Python指定版本"
 	  echo -e "${gl_kjlan}5.   ${gl_bai}開放所有連接埠${gl_kjlan}6.   ${gl_bai}修改SSH連接埠"
 	  echo -e "${gl_kjlan}7.   ${gl_bai}優化DNS位址${gl_kjlan}8.   ${gl_bai}一鍵重裝系統${gl_huang}★${gl_bai}"
 	  echo -e "${gl_kjlan}9.   ${gl_bai}停用ROOT帳戶建立新帳戶${gl_kjlan}10.  ${gl_bai}切換優先ipv4/ipv6"
@@ -11458,7 +11458,7 @@ EOF
 			done
 
 			echo ""
-			echo "随机UUID"
+			echo "隨機UUID"
 			echo "------------------------"
 			for i in {1..5}; do
 				uuid=$(cat /proc/sys/kernel/random/uuid)
@@ -11891,7 +11891,7 @@ EOF
 			  	  echo "------------------------------------------------"
 			  	  echo "將會產生金鑰對，更安全的方式SSH登錄"
 				  echo "------------------------"
-				  echo "1. 產生新金鑰 2. 匯入已有金鑰 3. 檢視本機金鑰"
+				  echo "1. 生成新密钥              2. 导入已有密钥              3. 查看本机密钥"
 				  echo "------------------------"
 				  echo "0. 返回上一級選單"
 				  echo "------------------------"
@@ -12215,7 +12215,7 @@ EOF
 			  send_stats "解除安裝科技lion腳本"
 			  echo "解除安裝科技lion腳本"
 			  echo "------------------------------------------------"
-			  echo "將徹底卸載kejilion腳本，不影響你其他功能"
+			  echo "将彻底卸载kejilion脚本，不影响你其他功能"
 			  read -e -p "確定繼續嗎？ (Y/N):" choice
 
 			  case "$choice" in
