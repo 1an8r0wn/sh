@@ -1085,7 +1085,7 @@ manage_country_rules() {
 			iptables -A INPUT -m set --match-set "$ipset_name" src -j ACCEPT
 			iptables -A OUTPUT -m set --match-set "$ipset_name" dst -j ACCEPT
 
-			echo "已成功仅允许 $country_code的 IP 位址"
+			echo "已成功僅允許$country_code的 IP 位址"
 			rm "${country_code,,}.zone"
 			;;
 
