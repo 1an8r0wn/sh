@@ -222,7 +222,7 @@ check_disk_space() {
 		echo -e "${gl_huang}hint:${gl_bai}Not enough disk space!"
 		echo "Current available space: $((available_space_mb/1024))G"
 		echo "Minimum required space:${required_gb}G"
-		echo "Unable to continue the installation, please clear the disk space and try again."
+		echo "The installation cannot continue. Please clear the disk space and try again."
 		send_stats "Not enough disk space"
 		break_end
 		kejilion
@@ -2548,7 +2548,7 @@ clear_container_rules() {
 		iptables -D DOCKER-USER -p tcp -d "$container_ip" -j DROP
 	fi
 
-	# Clear the rules that allow specified IPs
+	# Clear the rules that allow the specified IP
 	if iptables -C DOCKER-USER -p tcp -s "$allowed_ip" -d "$container_ip" -j ACCEPT &>/dev/null; then
 		iptables -D DOCKER-USER -p tcp -s "$allowed_ip" -d "$container_ip" -j ACCEPT
 	fi
@@ -2567,7 +2567,7 @@ clear_container_rules() {
 		iptables -D DOCKER-USER -p udp -d "$container_ip" -j DROP
 	fi
 
-	# Clear the rules that allow specified IPs
+	# Clear the rules that allow the specified IP
 	if iptables -C DOCKER-USER -p udp -s "$allowed_ip" -d "$container_ip" -j ACCEPT &>/dev/null; then
 		iptables -D DOCKER-USER -p udp -s "$allowed_ip" -d "$container_ip" -j ACCEPT
 	fi
@@ -2791,7 +2791,7 @@ while true; do
 			rm -f /home/docker/${docker_name}_port.conf
 			local app_no=$sub_choice
 			sed -i "/\b${app_no}\b/d" /home/docker/appno.txt
-			echo "App has been uninstalled"
+			echo "App uninstalled"
 			send_stats "uninstall$docker_name"
 			;;
 
@@ -3713,7 +3713,7 @@ EOF
 
 
 delete_forwarding_service() {
-	send_stats "Delete frp intranet service"
+	send_stats "删除frp内网服务"
 	# Prompt the user to enter the name of the service that needs to be deleted
 	read -e -p "Please enter the service name to be deleted:" service_name
 	# Use sed to delete the service and its related configuration
@@ -3924,7 +3924,7 @@ frps_panel() {
 				close_port 8055 8056
 				local app_no=$sub_choice
 				sed -i "/\b${app_no}\b/d" /home/docker/appno.txt
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 				;;
 			5)
 				echo "Reverse intranet penetration service into domain name access"
@@ -4020,7 +4020,7 @@ frpc_panel() {
 				close_port 8055
 				local app_no=$sub_choice
 				sed -i "/\b${app_no}\b/d" /home/docker/appno.txt
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 				;;
 
 			4)
@@ -4520,7 +4520,7 @@ echo -e "${gl_lv}ROOT login setup is complete!${gl_bai}"
 
 root_use() {
 clear
-[ "$EUID" -ne 0 ] && echo -e "${gl_huang}hint:${gl_bai}This function requires root user to run!" && break_end && kejilion
+[ "$EUID" -ne 0 ] && echo -e "${gl_huang}hint:${gl_bai}This feature requires root user to run!" && break_end && kejilion
 }
 
 
@@ -4786,7 +4786,7 @@ dd_xitong() {
 
 
 			  41)
-				send_stats "Reinstall Windows 11"
+				send_stats "Reinstall windows 11"
 				dd_xitong_2
 				bash InstallNET.sh -windows 11 -lang "cn"
 				reboot
@@ -6121,7 +6121,7 @@ disk_manager() {
 	send_stats "Hard disk management function"
 	while true; do
 		clear
-		echo "Hard drive partition management"
+		echo "Hard disk partition management"
 		echo -e "${gl_huang}This feature is under internal testing and should not be used in a production environment.${gl_bai}"
 		echo "------------------------"
 		list_partitions
@@ -7511,7 +7511,7 @@ linux_ldnmp() {
 	echo -e "${gl_huang}------------------------"
 	echo -e "${gl_huang}21.  ${gl_bai}Only install nginx${gl_huang}★${gl_bai}                     ${gl_huang}22.  ${gl_bai}site redirect"
 	echo -e "${gl_huang}23.  ${gl_bai}Site reverse proxy-IP+port${gl_huang}★${gl_bai}            ${gl_huang}24.  ${gl_bai}Site reverse proxy-domain name"
-	echo -e "${gl_huang}25.  ${gl_bai}Install Bitwarden Password Management Platform${gl_huang}26.  ${gl_bai}Install Halo Blog Site"
+	echo -e "${gl_huang}25.  ${gl_bai}安装Bitwarden密码管理平台         ${gl_huang}26.  ${gl_bai}Install Halo Blog Site"
 	echo -e "${gl_huang}27.  ${gl_bai}Install the AI ​​painting prompt word generator${gl_huang}28.  ${gl_bai}Site reverse proxy-load balancing"
 	echo -e "${gl_huang}30.  ${gl_bai}Custom static site"
 	echo -e "${gl_huang}------------------------"
@@ -8476,7 +8476,7 @@ linux_panel() {
 
 	  echo -e "${gl_kjlan}1.   ${color1}Pagoda panel official version${gl_kjlan}2.   ${color2}aaPanel Pagoda International Version"
 	  echo -e "${gl_kjlan}3.   ${color3}1Panel new generation management panel${gl_kjlan}4.   ${color4}NginxProxyManager visualization panel"
-	  echo -e "${gl_kjlan}5.   ${color5}OpenList multi-store file list program${gl_kjlan}6.   ${color6}Ubuntu Remote Desktop Web Version"
+	  echo -e "${gl_kjlan}5.   ${color5}OpenList multi-store file list program${gl_kjlan}6.   ${color6}Ubuntu Remote Desktop Web Edition"
 	  echo -e "${gl_kjlan}7.   ${color7}Nezha Probe VPS Monitoring Panel${gl_kjlan}8.   ${color8}QB offline BT magnetic download panel"
 	  echo -e "${gl_kjlan}9.   ${color9}Poste.io mail server program${gl_kjlan}10.  ${color10}RocketChat multi-person online chat system"
 	  echo -e "${gl_kjlan}------------------------"
@@ -8787,7 +8787,7 @@ linux_panel() {
 				check_docker_image_update $docker_name
 
 				clear
-				echo -e "postal services$check_docker $update_status"
+				echo -e "postal service$check_docker $update_status"
 				echo "poste.io is an open source mail server solution,"
 				echo "Video introduction: https://www.bilibili.com/video/BV1wv421C71t?t=0.1"
 
@@ -8890,7 +8890,7 @@ linux_panel() {
 						rm -rf /home/docker/mail
 						local app_no=$sub_choice
 						sed -i "/\b${app_no}\b/d" /home/docker/appno.txt
-						echo "App has been uninstalled"
+						echo "App uninstalled"
 						;;
 
 					*)
@@ -8943,7 +8943,7 @@ linux_panel() {
 				docker rm -f db
 				docker rmi -f mongo:latest
 				rm -rf /home/docker/mongo
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 			}
 
 			docker_app_plus
@@ -9887,7 +9887,7 @@ linux_panel() {
 				docker rmi -f grafana/grafana:latest
 
 				rm -rf /home/docker/monitoring
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 			}
 
 			docker_app_plus
@@ -10101,7 +10101,7 @@ linux_panel() {
 			docker_app_uninstall() {
 				cd  /home/docker/dify/docker/ && docker compose down --rmi all
 				rm -rf /home/docker/dify
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 			}
 
 			docker_app_plus
@@ -10151,7 +10151,7 @@ linux_panel() {
 			docker_app_uninstall() {
 				cd  /home/docker/new-api/ && docker compose down --rmi all
 				rm -rf /home/docker/new-api
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 			}
 
 			docker_app_plus
@@ -10191,7 +10191,7 @@ linux_panel() {
 				cd /opt
 				rm -rf jumpserver-installer*/
 				rm -rf jumpserver
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 			}
 
 			docker_app_plus
@@ -10252,7 +10252,7 @@ linux_panel() {
 			docker_app_uninstall() {
 				cd  /home/docker/ragflow/docker/ && docker compose down --rmi all
 				rm -rf /home/docker/ragflow
-				echo "App has been uninstalled"
+				echo "App uninstalled"
 			}
 
 			docker_app_plus
@@ -10616,7 +10616,7 @@ linux_panel() {
 
 			docker_rum() {
 
-				read -e -p "set up${docker_name}Login user name:" app_use
+				read -e -p "set up${docker_name}Login username:" app_use
 				read -e -p "set up${docker_name}Login password:" app_passwd
 
 				docker run -d \
@@ -10760,7 +10760,7 @@ linux_panel() {
 			  docker_app_uninstall() {
 				  cd /home/docker/linkwarden && docker compose down --rmi all
 				  rm -rf /home/docker/linkwarden
-				  echo "App has been uninstalled"
+				  echo "App uninstalled"
 			  }
 
 			  docker_app_plus
@@ -10809,7 +10809,7 @@ linux_panel() {
 				  cd "$(ls -dt */ | head -n 1)"
 				  docker compose down --rmi all
 				  rm -rf /home/docker/jitsi
-				  echo "App has been uninstalled"
+				  echo "App uninstalled"
 			  }
 
 			  docker_app_plus
@@ -10855,7 +10855,7 @@ linux_work() {
 	  echo -e "${gl_kjlan}7.   ${gl_bai}Work Area 7"
 	  echo -e "${gl_kjlan}8.   ${gl_bai}Work Area 8"
 	  echo -e "${gl_kjlan}9.   ${gl_bai}Workspace No. 9"
-	  echo -e "${gl_kjlan}10.  ${gl_bai}Workspace No. 10"
+	  echo -e "${gl_kjlan}10.  ${gl_bai}Workspace 10"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}21.  ${gl_bai}SSH resident mode${gl_huang}★${gl_bai}"
 	  echo -e "${gl_kjlan}22.  ${gl_bai}Create/enter workspace"
@@ -11037,7 +11037,7 @@ linux_Settings() {
 	  echo -e "${gl_kjlan}11.  ${gl_bai}Check port occupation status${gl_kjlan}12.  ${gl_bai}Modify virtual memory size"
 	  echo -e "${gl_kjlan}13.  ${gl_bai}User management${gl_kjlan}14.  ${gl_bai}User/password generator"
 	  echo -e "${gl_kjlan}15.  ${gl_bai}System time zone adjustment${gl_kjlan}16.  ${gl_bai}Set up BBR3 acceleration"
-	  echo -e "${gl_kjlan}17.  ${gl_bai}Firewall Advanced Manager${gl_kjlan}18.  ${gl_bai}修改主机名"
+	  echo -e "${gl_kjlan}17.  ${gl_bai}Firewall Advanced Manager${gl_kjlan}18.  ${gl_bai}Modify hostname"
 	  echo -e "${gl_kjlan}19.  ${gl_bai}Switch system update source${gl_kjlan}20.  ${gl_bai}Scheduled task management"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}21.  ${gl_bai}Native host resolution${gl_kjlan}22.  ${gl_bai}SSH defense program"
@@ -11435,7 +11435,7 @@ EOF
 
 		  14)
 			clear
-			send_stats "User information generator"
+			send_stats "用户信息生成器"
 			echo "random username"
 			echo "------------------------"
 			for i in {1..5}; do
@@ -11444,7 +11444,7 @@ EOF
 			done
 
 			echo ""
-			echo "random name"
+			echo "随机姓名"
 			echo "------------------------"
 			local first_names=("John" "Jane" "Michael" "Emily" "David" "Sophia" "William" "Olivia" "James" "Emma" "Ava" "Liam" "Mia" "Noah" "Isabella")
 			local last_names=("Smith" "Johnson" "Brown" "Davis" "Wilson" "Miller" "Jones" "Garcia" "Martinez" "Williams" "Lee" "Gonzalez" "Rodriguez" "Hernandez")
@@ -11828,7 +11828,7 @@ EOF
 					echo -e "${gl_lv}The currently set inbound traffic limit threshold is:${gl_huang}${rx_threshold_gb}${gl_lv}G${gl_bai}"
 					echo -e "${gl_lv}The currently set outbound traffic limiting threshold is:${gl_huang}${tx_threshold_gb}${gl_lv}GB${gl_bai}"
 				else
-					echo -e "${gl_hui}Current limiting shutdown function is not currently enabled${gl_bai}"
+					echo -e "${gl_hui}The current limiting shutdown function is not currently enabled${gl_bai}"
 				fi
 
 				echo
@@ -12097,7 +12097,7 @@ EOF
 
 				  echo "------------------------------------------------"
 				  add_swap 1024
-				  echo -e "[${gl_lv}OK${gl_bai}] 3/10. 设置虚拟内存${gl_huang}1G${gl_bai}"
+				  echo -e "[${gl_lv}OK${gl_bai}] 3/10. Set up virtual memory${gl_huang}1G${gl_bai}"
 
 				  echo "------------------------------------------------"
 				  local new_port=5522
@@ -12643,7 +12643,7 @@ echo "------------------------"
 echo -e "${gl_zi}V.PS 6.9 dollars per month Tokyo Softbank 2 cores 1G memory 20G hard drive 1T traffic per month${gl_bai}"
 echo -e "${gl_bai}URL: https://vps.hosting/cart/tokyo-cloud-kvm-vps/?id=148&?affid=1355&?affid=1355${gl_bai}"
 echo "------------------------"
-echo -e "${gl_kjlan}More popular VPS deals${gl_bai}"
+echo -e "${gl_kjlan}More popular VPS offers${gl_bai}"
 echo -e "${gl_bai}Website: https://kejilion.pro/topvps/${gl_bai}"
 echo "------------------------"
 echo ""
